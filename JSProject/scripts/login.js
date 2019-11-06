@@ -2,24 +2,40 @@
 window.addEventListener('load',()=>{
     registerEvent();
 });
-var username,password,btn,res;
+
 
 function registerEvent(){
-    username = document.querySelector('#userid');
-    password = document.querySelector('#pwd');
-    btn = document.querySelector('#login');
-    res  = document.querySelector('#invalid');
+    var username = document.querySelector('#userid');
+    var password = document.querySelector('#pwd');
+    var btn = document.querySelector('#login');
+    var res  = document.querySelector('#invalid');
     
-    btn.addEventListener('click',doLogin);
+    btn.addEventListener('click',
+    ()=>{
+        doLogin(username,password,res);
+    });
 
 }
 
-function doLogin(){
-    console.log('inside do login');
-    if(username.value == password.value){
-        location.href = "dashboard.html";
-    }
-    else{
+function doLogin(username,password,res){
+    var firebasePromise = firebase.database().ref('/crudusers/');
+    var isUserFound = false;
+    firebasePromise.on('value',(snapshot)=>{
+        var users = snapshot.val();
+        var obj={};
+        // console.log(users);
+        for(var key in users){
+            obj = users[key];
+            if(obj.username == username.value && obj.password == password.value){
+                isUserFound=true;
+                location.href = "dashboard.html";
 
-    }
+            }
+        }
+        if(isUserFound == false){
+            res.innerText = "Invalid Userid and Password";
+            res.className = "alert-danger p-5";
+        }
+    });
+
 }

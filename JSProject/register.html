@@ -6,23 +6,22 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
     <script src="./scripts/utils/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-database.js"></script>
-    
-    <script src="./scripts/login.js"></script>
+    <script src="./scripts/users/model/user.js"></script>
+    <script src="./scripts/users/controller/controller.js"></script>
 </head>
 <body>
     <div class="container">
-        <h1 class="alert-primary text-center p-3 rounded">LOGIN</h1>
-        <p id="invalid"></p>
-        <input type="text" id="userid" class="form-control" placeholder="Enter the Username">
-        <input type="text" id="pwd" class="form-control" placeholder="Enter the Password">
+        <h1 class="alert-primary text-center">Register</h1>
         <br>
-        <button id="login" class="btn btn-primary btn-lg">Login</button>
-        <a href="register.html" role="button" class="btn btn-success btn-lg ml-2">Register</a>
+        <input type="text" class="form-control" placeholder="Enter the username" id="userid">
+        <input type="text" class="form-control" placeholder="Enter the password" id="pwd">
+        <br>
+        <button class="btn btn-success btn-lg" id="register">Register</button>
     </div>
 </body>
 </html>
